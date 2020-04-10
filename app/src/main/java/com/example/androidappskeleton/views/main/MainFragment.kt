@@ -34,10 +34,10 @@ class MainFragment: Fragment() {
             this.viewModel = this@MainFragment.viewModel
             lifecycleOwner = this@MainFragment
         }
-        this.viewModel.successEvent.observe(this, EventObserver {
+        this.viewModel.successEvent.observe(viewLifecycleOwner, EventObserver {
             Log.i("MainFragment", "successEvent $it")
         })
-        this.viewModel.failedEvent.observe(this, EventObserver {
+        this.viewModel.failedEvent.observe(viewLifecycleOwner, EventObserver {
             Log.i("MainFragment", "failedEvent")
         })
         return viewDataBinding.root
