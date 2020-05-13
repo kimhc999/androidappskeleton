@@ -53,7 +53,7 @@
                 android:padding="@dimen/item_margin"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
                 android:enabled="@{viewModel.isOkButtonEnabled(viewModel.testText)}"
-                android:onClick="@{() -> viewModel.login()}" />
+                android:onClick="@{() -> viewModel.calculate()}" />
             <TextView
                 android:id="@+id/result_text_view"
                 android:layout_height="wrap_content"

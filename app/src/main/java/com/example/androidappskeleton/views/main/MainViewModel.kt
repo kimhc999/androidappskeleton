@@ -3,12 +3,17 @@ package com.example.androidappskeleton.views.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.androidappskeleton.services.TempService
+import androidx.lifecycle.viewModelScope
+import com.example.androidappskeleton.services.DispatchersService
+import com.example.androidappskeleton.services.TextService
 import com.example.androidappskeleton.utils.Event
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
-    private val tempService: TempService
+    private val textService: TextService,
+    private val dispatchersService: DispatchersService
 ) : ViewModel() {
     val testText = MutableLiveData<String>()
     private val _successEvent = MutableLiveData<Event<String>>()
@@ -23,18 +28,13 @@ class MainViewModel @Inject constructor(
         _message.value = ""
     }
 
-    fun login() {
-        if(testText.value == null) return
-        tempService.runTest(
-            test = testText.value!!,
-            successCallback = {
-                _successEvent.value = Event(testText.value!!)
-                _message.value = testText.value
-            },
-            failedCallback = {
-                _failedEvent.value = Event(Unit)
-            })
-
+    fun calculate() {
+        viewModelScope.launch {
+            withContext(dispatchersService.io) {
+                val length = textService.getStringLength(testText.value)
+                _message.postValue(length.toString())
+            }
+        }
     }
 
     fun isOkButtonEnabled(testText: String): Boolean {

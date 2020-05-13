@@ -31,7 +31,8 @@ class MainFragment: Fragment() {
     ): View? {
         viewDataBinding = DataBindingUtil.inflate<FragmentMainBinding>(
             inflater, R.layout.fragment_main, container, false).apply {
-            this.viewModel = this@MainFragment.viewModel
+            val viewModel = this@MainFragment.viewModel
+            this.viewModel = viewModel
             lifecycleOwner = this@MainFragment
         }
         this.viewModel.successEvent.observe(viewLifecycleOwner, EventObserver {
