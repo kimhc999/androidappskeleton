@@ -8,10 +8,11 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules=[TestModule::class])
+@Component(modules=[
+    TestModule::class,
+    ViewModelModule::class])
 interface ApplicationComponent {
     fun inject(mainFragment: MainFragment)
-    fun inject(mainViewModel: MainViewModel)
     fun inject(textService: TextService)
     fun inject(dispatchersService: DispatchersService)
 }

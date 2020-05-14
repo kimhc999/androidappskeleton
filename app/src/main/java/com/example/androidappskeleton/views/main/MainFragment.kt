@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.androidappskeleton.R
 import com.example.androidappskeleton.SkeletonApp
 import com.example.androidappskeleton.databinding.FragmentMainBinding
@@ -17,7 +19,12 @@ import javax.inject.Inject
 
 class MainFragment: Fragment() {
     @Inject
-    lateinit var viewModel: MainViewModel
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel: MainViewModel by viewModels {
+        viewModelFactory
+    }
+
     private lateinit var viewDataBinding: FragmentMainBinding
     override fun onAttach(context: Context) {
         (context.applicationContext as SkeletonApp).appComponent.inject(this)
