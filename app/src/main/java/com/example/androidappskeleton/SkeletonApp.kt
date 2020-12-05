@@ -1,9 +1,7 @@
 package com.example.androidappskeleton
 
 import android.app.Application
-import com.example.androidappskeleton.di.ApplicationComponent
-import com.example.androidappskeleton.di.DaggerApplicationComponent
+import dagger.hilt.android.HiltAndroidApp
 
-class SkeletonApp : Application() {
-    val appComponent: ApplicationComponent = DaggerApplicationComponent.create()
-}
+@HiltAndroidApp
+class SkeletonApp : Application()

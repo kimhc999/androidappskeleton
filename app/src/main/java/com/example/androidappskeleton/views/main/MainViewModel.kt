@@ -1,5 +1,6 @@
 package com.example.androidappskeleton.views.main
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,9 +10,8 @@ import com.example.androidappskeleton.services.TextService
 import com.example.androidappskeleton.utils.Event
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
-class MainViewModel @Inject constructor(
+class MainViewModel @ViewModelInject constructor(
     private val textService: TextService,
     private val dispatchersService: DispatchersService
 ) : ViewModel() {
@@ -38,6 +38,6 @@ class MainViewModel @Inject constructor(
     }
 
     fun isOkButtonEnabled(testText: String): Boolean {
-        return !testText.isBlank()
+        return testText.isNotBlank()
     }
 }

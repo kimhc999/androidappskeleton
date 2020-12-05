@@ -1,6 +1,5 @@
 package com.example.androidappskeleton.views.main
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,33 +8,23 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.example.androidappskeleton.R
-import com.example.androidappskeleton.SkeletonApp
 import com.example.androidappskeleton.databinding.FragmentMainBinding
 import com.example.androidappskeleton.utils.EventObserver
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainFragment: Fragment() {
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private val viewModel: MainViewModel by viewModels {
-        viewModelFactory
-    }
+    private val viewModel: MainViewModel by viewModels()
 
     private lateinit var viewDataBinding: FragmentMainBinding
-    override fun onAttach(context: Context) {
-        (context.applicationContext as SkeletonApp).appComponent.inject(this)
-        super.onAttach(context)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewDataBinding = DataBindingUtil.inflate<FragmentMainBinding>(
             inflater, R.layout.fragment_main, container, false).apply {
             val viewModel = this@MainFragment.viewModel
