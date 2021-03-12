@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.androidappskeleton.R
 import com.example.androidappskeleton.databinding.FragmentMainBinding
 import com.example.androidappskeleton.utils.EventObserver
@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainFragment: Fragment() {
 
-    private val viewModel: MainViewModel by viewModels()
+    private lateinit var viewModel: MainViewModel
 
     private lateinit var viewDataBinding: FragmentMainBinding
 
@@ -25,6 +25,7 @@ class MainFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewDataBinding = DataBindingUtil.inflate<FragmentMainBinding>(
             inflater, R.layout.fragment_main, container, false).apply {
             val viewModel = this@MainFragment.viewModel

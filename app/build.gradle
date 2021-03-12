@@ -6,7 +6,7 @@ apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion "30.0.3"
     defaultConfig {
         applicationId "com.example.androidappskeleton"
         minSdkVersion 21
@@ -41,20 +41,20 @@ dependencies {
 
     /** ViewModel */
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    kapt "androidx.lifecycle:lifecycle-common-java8:2.2.0"
+    kapt "androidx.lifecycle:lifecycle-common-java8:2.3.0"
     testImplementation "androidx.arch.core:core-testing:2.1.0"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
 
     /** Navigation */
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.4'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.4'
 
     /** UI */
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.fragment:fragment-ktx:1.2.5'
+    implementation 'androidx.fragment:fragment-ktx:1.3.1'
 
     /** Test */
     testImplementation 'junit:junit:4.13.1'
@@ -65,13 +65,13 @@ dependencies {
 
 
     /** Metrial Design */
-    implementation "com.google.android.material:material:1.2.1"
+    implementation "com.google.android.material:material:1.3.0"
 
     /** Dependency Injection*/
-    implementation "com.google.dagger:hilt-android:2.29.1-alpha"
-    kapt "com.google.dagger:hilt-android-compiler:2.29.1-alpha"
-    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
-    kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
+    kapt 'androidx.hilt:hilt-compiler:1.0.0-beta01'
 
     /** Network */
     implementation 'com.squareup.retrofit2:retrofit:2.8.1'
