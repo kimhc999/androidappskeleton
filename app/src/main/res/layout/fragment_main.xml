@@ -1,69 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.example.androidappskeleton.views.main.MainViewModel" />
     </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/coordinator_layout"
-            android:layout_margin="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:layout_margin="16dp">
+
             <TextView
                 android:id="@+id/logo"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textSize="36sp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/app_name"
+                android:textSize="36sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="@string/app_name"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:layout_constraintTop_toBottomOf="@id/logo"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:id="@+id/email_edit_text"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:endIconMode="clear_text">
+                app:endIconMode="clear_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/logo">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:text="@={viewModel.testText}"
-                    />
+                    android:text="@={viewModel.testText}" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/temp_button"
-                app:layout_constraintTop_toBottomOf="@id/email_edit_text"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_height="wrap_content"
                 android:layout_width="0dp"
-                android:textAlignment="center"
-                android:padding="@dimen/item_margin"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:layout_height="wrap_content"
                 android:enabled="@{viewModel.isOkButtonEnabled(viewModel.testText)}"
-                android:onClick="@{() -> viewModel.calculate()}" />
+                android:onClick="@{() -> viewModel.calculate()}"
+                android:padding="@dimen/item_margin"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/email_edit_text" />
+
             <TextView
                 android:id="@+id/result_text_view"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textSize="36sp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                app:layout_constraintTop_toBottomOf="@id/temp_button"
-                app:layout_constraintStart_toStartOf="parent"
+                android:text="@{viewModel.message}"
+                android:textSize="36sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="@{viewModel.message}"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/temp_button" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
